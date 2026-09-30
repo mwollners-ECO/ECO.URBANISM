@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="Michal Wollner – landscape architect. Nature-based, ecological and climate-adaptive planning across scales.">
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="description" content="Michal Wollner – landscape architect. Nature-based planning for cities, landscapes and bluescapes, and the living edges where they meet.">
 <title>Michal Wollner · Eco.Urbanism</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -14,6 +14,8 @@
   --muted:#666c8c;
   --grid:#e2e4ec;
   --tick:#b7bdd0;
+  --walker:#b58c95;
+  --tree:#7f9a83;     /* sage canopies */     /* burgundy pedestrians */
   --river:#1f2a56;       /* deep river navy */
   --duo-blend:screen;
   --on-river:#f3f4fa;
@@ -24,8 +26,8 @@
   --wrap:1152px;
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --paper:#0e1328;--sheet:rgba(14,19,40,.9);--fg:#e4e7f4;--muted:#9aa1c0;--grid:#1b2240;--tick:#2e3763;--river:#93a6ee;--veil:rgba(14,19,40,.8);--on-river:#0e1328;--duo-blend:multiply;color-scheme:dark}}
-:root[data-theme="dark"]{--paper:#0e1328;--veil:rgba(14,19,40,.8);--sheet:rgba(14,19,40,.9);--fg:#e4e7f4;--muted:#9aa1c0;--grid:#1b2240;--tick:#2e3763;--river:#93a6ee;--on-river:#0e1328;--duo-blend:multiply;color-scheme:dark}
+  --paper:#0e1328;--sheet:rgba(14,19,40,.9);--fg:#e4e7f4;--muted:#9aa1c0;--grid:#1b2240;--tick:#2e3763;--river:#93a6ee;--walker:#9a7f86;--tree:#8fae96;--veil:rgba(14,19,40,.8);--on-river:#0e1328;--duo-blend:multiply;color-scheme:dark}}
+:root[data-theme="dark"]{--paper:#0e1328;--walker:#9a7f86;--tree:#8fae96;--veil:rgba(14,19,40,.8);--sheet:rgba(14,19,40,.9);--fg:#e4e7f4;--muted:#9aa1c0;--grid:#1b2240;--tick:#2e3763;--river:#93a6ee;--on-river:#0e1328;--duo-blend:multiply;color-scheme:dark}
 
 *{box-sizing:border-box}
 html{scroll-behavior:smooth;scroll-padding-top:4rem}
@@ -75,7 +77,7 @@ nav ul a.on{color:var(--river);text-decoration:underline wavy;text-decoration-th
 .legend-title b{font:500 .95rem/1.3 var(--display);letter-spacing:.12em}
 .legend-title span{font:400 .8rem/1.3 var(--display);letter-spacing:.12em;color:var(--muted)}
 .swatches{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.8rem;list-style:none;margin:0;padding:0}
-.swatches li{display:grid;gap:.45rem;min-width:0}
+.swatches li{display:grid;gap:.45rem;min-width:0;align-content:start}
 .sw{height:18px;border:1px solid color-mix(in srgb,var(--river) 35%,transparent)}
 .sw.h1{background:repeating-linear-gradient(45deg,color-mix(in srgb,var(--river) 45%,transparent) 0 1px,transparent 1px 5px),repeating-linear-gradient(-45deg,color-mix(in srgb,var(--river) 45%,transparent) 0 1px,transparent 1px 5px)}
 .sw.h2{background:repeating-linear-gradient(0deg,color-mix(in srgb,var(--river) 45%,transparent) 0 1px,transparent 1px 4px)}
@@ -86,7 +88,16 @@ nav ul a.on{color:var(--river);text-decoration:underline wavy;text-decoration-th
 .swatches b{display:block;font:400 .82rem/1.25 var(--display);letter-spacing:.06em;color:var(--fg);text-align:center}
 .brackets{display:grid;grid-template-columns:4fr 1fr;gap:.8rem;margin-top:.8rem}
 .brackets span{border-top:1px dashed var(--tick);padding-top:.35rem;text-align:center;font:400 .75rem/1.2 var(--display);letter-spacing:.1em;color:var(--muted)}
-@media (max-width:620px){.swatches{grid-template-columns:repeat(3,minmax(0,1fr))}.brackets{display:none}}
+.axis{position:relative;height:1px;background:var(--river);margin:.9rem 10px 0 0}
+.axis::after{content:"";position:absolute;right:-10px;top:-5px;border-left:10px solid var(--river);border-top:5.5px solid transparent;border-bottom:5.5px solid transparent}
+@media (max-width:620px){
+  .legend{margin-inline:-.6rem;padding:.7rem .6rem}
+  .swatches{grid-template-columns:repeat(5,minmax(0,1fr));gap:.3rem}
+  .sw{height:12px}
+  .swatches .mono{font-size:.58rem;letter-spacing:0}
+  .swatches b{font-size:.52rem;letter-spacing:0;line-height:1.25}
+  .brackets{display:none}
+}
 
 .hero-figure{margin:clamp(2rem,5vw,3rem) 0 0;border:1px solid var(--tick);background:var(--paper);padding:6px}
 .hero-figure img{width:100%;aspect-ratio:12/5;object-fit:cover}
@@ -220,7 +231,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;
 <header class="hero" id="top"><div class="wrap"><div class="sheet">
   <p class="label pp">Landscape Architect &amp; Planner · Cand.hort.arch., MSc</p>
   <h1><span class="pp" style="color:var(--fg)">Michal Wollner</span><span class="pp">Eco.Urbanism</span></h1>
-  <p class="intro pp">Nature-based, ecological and climate-adaptive planning for Mediterranean and arid landscapes, from city-wide strategy to native planting on site.</p>
+  <p class="intro pp">Nature-based planning for cities, landscapes and bluescapes – and the living edges where they meet. From city-wide strategy to a single native plant on site.</p>
   <div class="meta mono pp"><span>Copenhagen, Denmark</span><span>10 years in practice · Israel &amp; Denmark</span><span>MSc University of Copenhagen · 12/12</span></div>
 
   <div class="legend">
@@ -232,13 +243,10 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;
       <li><div class="sw h4"></div><span class="mono">2021–23</span><b>MSc, Copenhagen</b></li>
       <li><div class="sw now"></div><span class="mono">2021–now</span><b>Eco.Urbanism</b></li>
     </ul>
+    <div class="axis" aria-hidden="true"></div>
     <div class="brackets"><span>Earlier courses</span><span>Current course</span></div>
   </div>
 </div>
-  <figure class="hero-figure">
-    <div class="duo"><img src="images/arava-plan.jpg" alt="Master plan of the Arava Delta park in Eilat: a sequence of wetland and dry habitats where the canal meets the Red Sea"></div>
-    <figcaption class="mono"><span>Arava Delta, Eilat · wetland habitat master plan</span><span>MKR Architects · Ministry of Tourism</span></figcaption>
-  </figure>
 </div></header>
 
 <section id="work"><div class="wrap"><div class="sheet">
@@ -260,9 +268,9 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;
   <div class="about">
     <figure><div class="duo"><img src="images/portrait.jpg" alt="Portrait of Michal Wollner"></div></figure>
     <div>
-      <p class="lede">I design plant communities and green infrastructure that express place identity, support biodiversity and keep performing over time, across Mediterranean and arid climates.</p>
-      <p>I have ten years of experience in nature-based, ecological and climate-adaptive planning for municipalities and regional authorities in Israel, from strategic frameworks to built projects. My research at the University of Copenhagen shaped the question I keep returning to: how to combine spatial-ecological data and social data into one reading of how well a place serves people and ecosystems. Most recently I explored this through a GIS-based quality index for the public realm of Tel Aviv-Jaffa.</p>
-      <p>Biophilic principles guide the work. I am based in Copenhagen and open to collaborations and roles on environmentally driven projects.</p>
+      <p class="lede">I plan across scales – from regional corridors and city-wide strategies to the street, the park and the single plant – and hold them together as one holistic system.</p>
+      <p>My practice follows an eco-urbanist approach: ecology, water, public space, mobility and community are read as layers of one urban and landscape system, and each project is shaped by how those layers connect. Over ten years with municipalities and regional authorities in Israel, I have carried this reading from strategic frameworks and master plans through design to execution plans and supervision on site.</p>
+      <p>My MSc at the University of Copenhagen grounded the approach in research: how to combine spatial-ecological and social data into one reading of how well a place serves people and ecosystems. Today it shapes a GIS-based quality index for Tel Aviv-Jaffa’s public realm. I am based in Copenhagen and open to collaborations and roles on environmentally driven projects.</p>
       <dl class="facts">
         <div><dt>Largest plan</dt><dd>630 km²</dd></div>
         <div><dt>Native species in one scheme</dt><dd>157</dd></div>
@@ -279,7 +287,7 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;
     <div>
       <h3>Practice</h3>
       <ul class="tl">
-        <li><span class="yr">2021 – now</span><div><b>Michal Wollner – Eco.Urbanism</b><span>Founder, Israel / Denmark. An eco-urbanism practice for public authorities, regional councils and planning offices, working across scales. <em>Strategic:</em> the Tel Aviv-Jaffa public infrastructure framework and the Sea-to-Jordan ecological corridor (≈630 km², with LYGM). <em>Master plans:</em> overnight-camping sites in the Upper Galilee, the Mediterranean Forest-Neighbourhood in Lod, a regenerative quarry vision. <em>Design and execution:</em> stream and water-body restoration, native planting for a restored stream in Lod, the Shafdan visitor centre, an educational farm in the Upper Galilee and a birdwatching park at the Timna reservoir.</span></div></li>
+        <li><span class="yr">2021 – now</span><div><b>Michal Wollner – Eco.Urbanism</b><span>Founder, Israel / Denmark. An eco-urbanism practice for public authorities, regional councils and planning offices, working across scales. <em>Strategic:</em> the Tel Aviv-Jaffa public infrastructure framework and the Sea-to-Jordan ecological corridor (≈630 km², with LYGM). <em>Master plans:</em> overnight-camping sites in the Upper Galilee, the Mediterranean Forest-Neighbourhood in Lod, a regenerative quarry vision. <em>Design and execution:</em> stream and water-body restoration, native planting for a restored stream in Lod, the Shafdan visitor and education centre for circular water use, an educational farm in the Upper Galilee and a birdwatching park at the Timna reservoir.</span></div></li>
         <li><span class="yr">2019 – 2022</span><div><b><a class="ext" href="https://mkarchitects.com/about/" target="_blank" rel="noopener">MKR Architects ↗</a></b><span>Team leader and landscape architect. From the Eilat Coastal Strip Master Plan and the Arava Delta concept to the built Eilat promenade, with site supervision after planting.</span></div></li>
         <li><span class="yr">2016 – 2018</span><div><b><a class="ext" href="https://www.lygm.co.il/" target="_blank" rel="noopener">LYGM | Environmental Projects ↗</a></b><span>Team leader and landscape architect. Regional landscape planning and ecological restoration.</span></div></li>
         <li><span class="yr">2016 – 2017</span><div><b><a class="ext" href="https://www.zurarchitects.com/" target="_blank" rel="noopener">Zura Studio ↗</a></b><span>Israeli-Spanish studio. Landscape architect. Urban tree planting systems and nature-based solutions for renewal areas.</span></div></li>
@@ -340,9 +348,9 @@ footer .wrap{display:flex;justify-content:space-between;flex-wrap:wrap;gap:1rem;
 const P=[
 {id:'skeleton',k:'practice',t:'Public Infrastructure: Tel Aviv-Jaffa',by:'Eco.Urbanism for Tel Aviv-Jaffa Municipality · 2026',img:['skeleton-street','skeleton-coast','skeleton-map','skeleton-scale','skeleton-layers'],vid:'skeleton',
  spec:{Role:'Consultant, public-realm strategy and GIS',Client:'Tel Aviv-Jaffa Municipality, Strategic Planning Unit',Context:'City-wide public infrastructure',Tools:'QGIS, custom quality index',Status:'In progress'},
- sum:'A shared, living GIS model of the city’s public skeleton, from city scale down to the street.',
- body:['The city’s public infrastructure, its public skeleton, links open spaces and natural assets, built public spaces, and employment and commercial corridors into one network across the city.','The work sets up a living environment where municipal departments can keep the skeleton up to date together, at every scale. All the data sits in one file of three layers: lines for streets, polygons for public and commercial spaces, and points for public and commercial nodes.','This shows where the desired skeleton already exists and where it still has to be realised, which segments are open to change, and what each segment needs, such as cycle routes, ecological links, flood-sensitive design or more shade.'],
- list:['Skeleton components: open spaces and nature, built public spaces, employment and commerce','Quality layers and background data, including an ecological skeleton','A dynamic skeleton that adapts to map scale','A quality index for how well each part of the public realm performs']},
+ sum:'A shared, living GIS model of the city’s public infrastructure, from city scale down to the street.',
+ body:['The city’s public infrastructure links open spaces and natural assets, built public spaces, and employment and commercial corridors into one network across the city.','The work sets up a living environment where municipal departments can keep the infrastructure up to date together, at every scale. All the data sits in one file of three layers: lines for streets, polygons for public and commercial spaces, and points for public and commercial nodes.','This shows where the desired infrastructure already exists and where it still has to be realised, which segments are open to change, and what each segment needs, such as cycle routes, ecological links, flood-sensitive design or more shade.'],
+ list:['Infrastructure components: open spaces and nature, built public spaces, employment and commerce','Quality layers and background data, including an ecological infrastructure layer','A dynamic infrastructure map that adapts to map scale','A quality index for how well each part of the public realm performs']},
 {id:'corridor',k:'practice',t:'Sea-to-Jordan corridor master plan',by:'Eco.Urbanism with LYGM · 2026 · Haifa Bay to the Jordan Valley',img:['corridor-render','corridor-cover','corridor-areas','corridor-survey','corridor-alt-a','corridor-alt-b','corridor-alt-c'],
  spec:{Scale:'≈630 km²',Rivers:'Kishon and Harod',Partners:'KKL-JNF, Kishon and Southern Jordan drainage authorities, Israel Nature and Parks Authority, SPNI, regional councils and municipalities',Stage:'Existing-conditions survey and strategic alternatives',Status:'Ongoing'},
  sum:'An ecological corridor through the valleys from the Mediterranean coast to the Jordan River.',
@@ -357,7 +365,7 @@ const P=[
  spec:{Role:'Landscape architect',Context:'Educational agricultural farm',Scope:'Execution plan, entrance, paving, gates',Status:'Under construction'},
  sum:'An execution plan for an educational agricultural farm in the Upper Galilee.',
  body:['A place where children and families learn by working the land: vegetable beds, flowering edges, shaded outdoor classrooms and paths set among the existing orchards.','The execution plan covers the entrance sequence, paving and gates, with material studies comparing local limestone and basalt.'],list:[]},
-{id:'stream',k:'practice',t:'Native planting design for a restored Mediterranean stream',by:'Eco.Urbanism for MKR Architects · Current · Israel',img:['stream-aerial','stream-mixes-dry','stream-mixes-wet','stream-plan'],
+{id:'stream',k:'practice',t:'Native planting design for a restored Mediterranean stream',by:'Eco.Urbanism for MKR Architects · Current · Israel',img:['stream-aerial','stream-mixes-dry','stream-mixes-wet','stream-plan','stream-nursery','stream-planting'],
  spec:{Role:'Planting design lead',Scale:'75,000 m²',Client:'Lod Municipality',Context:'Urban neighbourhood park',Status:'Under construction'},
  sum:'Restoring a historic stream corridor through plant-led habitat design.',
  body:['The planting strategy is built on native and endemic species, structured into riparian and terrestrial plant communities that respond to hydrology, soil conditions and seasonal change.','It gives the park a resilient green backbone all year while allowing seasonal variation, biodiversity support and long-term ecological performance in an urban setting.'],
@@ -366,19 +374,19 @@ const P=[
  spec:{Role:'Planting concept and urban forest strategy',Scale:'236,000 m² (60,000 m² public open space)',Client:'Lod Municipality',Context:'Urban renewal neighbourhood',Status:'Planning phase'},
  sum:'Six forest typologies shaping public space, microclimate and ecological identity.',
  body:['The project brings Mediterranean forest systems into an urban neighbourhood, using planting as the main tool for shaping public space and microclimate.','Six forest typologies combine native woodland, urban orchards and shaded public spaces: man-made groves, boulevards and street trees, activity glades, orchards, edible Mediterranean forests and park-forests.'],list:[]},
-{id:'eilat',k:'practice',t:'Arid-climate planting for a coastal desert promenade',by:'MKR Architects · 2020 · Eilat',img:['eilat-photo','eilat-collage'],
+{id:'eilat',k:'practice',t:'Arid-climate planting for a coastal desert promenade',by:'MKR Architects · 2020 · Eilat',cover:'eilat-photo',img:['eilat-collage','eilat-photo'],
  spec:{Role:'Planting strategy and landscape design',Climate:'Hot desert / coastal',Client:'Ministry of Tourism',Context:'Tourist promenade',Status:'Under construction'},
  sum:'Vegetation as the main shading and microclimate tool between the Red Sea and the desert mountains.',
  body:['The promenade sits where the Red Sea meets the desert mountains. The planting had to provide shade, withstand drought and salinity, and respect sensitive marine and desert ecosystems.','Drought-tolerant and salt-resistant species create shaded pedestrian spaces while keeping views open to the sea.'],
  list:['Species selected for extreme heat and coastal exposure','Planting coordinated with hardscape, paving and circulation','Paving details referencing the geology of the nearby mountains','Irrigation logic, establishment phases and maintenance planned','After-planting supervision on site']},
-{id:'arava',k:'practice',t:'Arava Delta: wetland habitat and planting design',by:'MKR Architects · 2021 · Eilat',img:['arava','arava-plan'],
+{id:'arava',k:'practice',t:'Arava Delta: wetland habitat and planting design',by:'MKR Architects · 2021 · Eilat',img:['arava-plan','arava'],
  spec:{Role:'Habitat and planting strategy',Climate:'Arid / desert',Client:'Ministry of Tourism',Context:'Delta landscape in an arid setting',Status:'Concept design'},
  sum:'Turning a large canal into a delta-based wetland landscape.',
  body:['A sequence of wetland and semi-wet habitats is defined by water availability, soil conditions and seasonal fluctuation. Planting supports biodiversity, stabilises soils and shapes the visitor experience.'],
  list:['Planting integrated with water management and seasonal water levels','Gradients from open water to marsh to dry landscape','Ecological restoration balanced with controlled public access']},
-{id:'shafdan',k:'practice',t:'Ecological greenhouse visitor centre, Shafdan',by:'Eco.Urbanism · Israel',img:['shafdan','shafdan-plan'],
+{id:'shafdan',k:'practice',t:'Shafdan: visitor and education centre for circular water use',by:'Eco.Urbanism · Israel',img:['shafdan','shafdan-plan','shafdan-site3','shafdan-site4','shafdan-site1','shafdan-site2'],
  spec:{Role:'Landscape architect',Client:'Igudan',Context:'Water research and education centre',Focus:'Local vegetation, indoor–outdoor integration',Status:'Under construction'},
- sum:'Landscape and architecture joined in a water and wastewater research and education centre.',
+ sum:'A landscape that teaches the water cycle, at the heart of a wastewater-reuse research and education centre.',
  body:['Water elements manage runoff and create play in the main plaza. Interior planting blurs inside and outside, soil serves as ground cover, and local salt-tolerant plants handle the difficult conditions.'],list:[]},
 {id:'quarry',k:'practice',t:'Quarrying Promises: a regenerative tourism vision',by:'Eco.Urbanism · 2024 · Israel',img:['quarry-plan'],
  spec:{Context:'Abandoned quarry',Climate:'Arid / semi-arid',Focus:'Regenerative tourism, landscape rehabilitation',Status:'Conceptual master plan'},
@@ -419,7 +427,7 @@ function render(){const list=P.filter(p=>(fKind==='all'||p.k===fKind)&&(!fTheme|
   document.getElementById('empty').hidden=list.length>0;
   grid.innerHTML=list.map((p,i)=>`
 <button class="card ${i%2?'l':'r'}${(p.id==='thesis'||p.id==='skeleton')&&!fTheme?' wide':''}" type="button" data-id="${p.id}">
-  <div class="ph duo"><img src="images/${p.img[0]}.jpg" alt="" loading="lazy" ${p.pos?`style="object-position:${p.pos}"`:''}></div>
+  <div class="ph duo"><img src="images/${p.cover||p.img[0]}.jpg" alt="" loading="lazy" ${p.pos?`style="object-position:${p.pos}"`:''}></div>
   <div class="row mono"><span>${p.k==='research'?'Research':'Practice'}</span><span>${esc(p.spec.Scale||p.spec.Status||p.spec.Grade||p.spec.Location||'')}</span></div>
   <h3>${esc(p.t)}</h3><p>${esc(p.sum)}</p>
   <div class="th">${p.th.map(t=>`<span>${THEMES[t]}</span>`).join('')}</div>
@@ -457,7 +465,7 @@ const cv=document.getElementById('map'),ctx=cv.getContext('2d');
 const reduce=matchMedia('(prefers-reduced-motion: reduce)').matches;
 let W=0,H=0,dpr=1,col={},mx=-9999,my=-9999,t0=performance.now(),frame=0,cps=[],pats={},hovered=null,reveal=0,target=0;
 const $=id=>document.getElementById(id);
-function colors(){const cs=getComputedStyle(document.documentElement);col={grid:cs.getPropertyValue('--grid').trim(),tick:cs.getPropertyValue('--tick').trim(),river:cs.getPropertyValue('--river').trim(),paper:cs.getPropertyValue('--paper').trim()};makePats()}
+function colors(){const cs=getComputedStyle(document.documentElement);col={walker:cs.getPropertyValue('--walker').trim(),tree:cs.getPropertyValue('--tree').trim(),grid:cs.getPropertyValue('--grid').trim(),tick:cs.getPropertyValue('--tick').trim(),river:cs.getPropertyValue('--river').trim(),paper:cs.getPropertyValue('--paper').trim()};makePats()}
 function pat(draw){const c=document.createElement('canvas');c.width=c.height=8;const g=c.getContext('2d');g.strokeStyle=g.fillStyle=col.river;g.lineWidth=.9;draw(g);return ctx.createPattern(c,'repeat')}
 /* wet-paper texture: soft mottled pools, tiled and drifted in two layers so light moves like water */
 let wet=null;
@@ -507,6 +515,106 @@ function spline(){
       out.push([f(p0.x,p1.x,p2.x,p3.x),f(p0.y,p1.y,p2.y,p3.y)])}}
   const l=P[P.length-1];out.push([l.x,l.y]);return out;
 }
+/* pedestrians seen from above, left walking along the cursor's path; drawn on their own layer above the page */
+const wc=document.createElement('canvas');wc.setAttribute('aria-hidden','true');wc.style.cssText='position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:25';document.body.appendChild(wc);
+const wx=wc.getContext('2d');
+/* figures: drawn facing "up" (−y) in local units */
+function figPerson(g,st,kind){
+  const man=kind==='man',child=kind==='child',elder=kind==='elder';
+  const sh=man?6.6:child?4.2:5.6, sw=child?2.2:elder?2.6:2.8, step=elder?1.8:child?2.8:3.2;
+  g.beginPath();g.ellipse(-sh*.38,-1+st*step,1.4,2.2,0,0,7);g.ellipse(sh*.38,-1-st*step,1.4,2.2,0,0,7);g.fill();   /* feet */
+  g.beginPath();g.ellipse(0,0,sh,sw,0,0,7);g.fill();                                                               /* shoulders */
+  g.lineWidth=1.2;g.lineCap='round';g.beginPath();g.moveTo(-sh+.4,0);g.lineTo(-sh-.2,-st*step);g.moveTo(sh-.4,0);g.lineTo(sh+.2,st*step);g.stroke(); /* arms */
+  if(kind==='woman'){g.beginPath();g.ellipse(0,1.4,2.6,3,0,0,7);g.fill()}                                           /* hair */
+  g.save();g.globalAlpha*=.35;g.fillStyle=col.paper;g.beginPath();g.arc(0,.2,(child?1.7:2.2)+.3,0,7);g.fill();g.restore();
+  g.beginPath();g.arc(0,.3,child?1.7:2.2,0,7);g.fill();                                                               /* head */
+  if(elder){g.beginPath();g.moveTo(sh+1.2,-2.5);g.lineTo(sh+1.6,2);g.stroke();g.beginPath();g.arc(sh+1.2,-2.8,.9,0,7);g.fill()} /* cane */
+}
+function figDog(g,st,t){
+  g.beginPath();g.ellipse(0,0,2.1,4.6,0,0,7);g.fill();                                   /* body */
+  g.beginPath();g.arc(0,-5.4,1.8,0,7);g.fill();                                         /* head */
+  g.beginPath();g.ellipse(-1.4,-5.9,.7,1.2,-.5,0,7);g.ellipse(1.4,-5.9,.7,1.2,.5,0,7);g.fill(); /* ears */
+  g.beginPath();[[-1.7,-2.6,st],[1.7,-2.6,-st],[-1.6,2.8,-st],[1.6,2.8,st]].forEach(([x,y,s])=>{g.moveTo(x+.8,y+s*1.6);g.arc(x,y+s*1.6,.8,0,7)});g.fill(); /* paws */
+  g.lineWidth=1;g.beginPath();g.moveTo(0,4.4);g.quadraticCurveTo(Math.sin(t/140)*2.5,6.5,Math.sin(t/140)*1.5,8);g.stroke(); /* tail */
+}
+/* groups that walk together: [kind, lateral offset, back offset], plus links (hands or leash) */
+function figStroller(g,st){
+  g.beginPath();g.roundRect?g.roundRect(-3.2,-15,6.4,8.5,2):g.rect(-3.2,-15,6.4,8.5);g.fill();            /* pram */
+  g.save();g.globalAlpha*=.35;g.fillStyle=col.paper;g.beginPath();g.ellipse(0,-12.6,2.1,2.4,0,0,7);g.fill();g.restore(); /* hood opening */
+  g.lineWidth=.9;g.beginPath();g.moveTo(-2.8,-6.5);g.lineTo(-2.2,-3.4);g.moveTo(2.8,-6.5);g.lineTo(2.2,-3.4);g.moveTo(-2.4,-3.4);g.lineTo(2.4,-3.4);g.stroke(); /* handle */
+}
+/* the crowd: a small community gathers around the cursor in conversation circles,
+   standing, shifting their weight, turning to one another; they amble after it when it moves */
+/* now and then, small groups stroll along the riverbank, independent of the cursor */
+const GROUPS=[
+  {m:[['woman',-7,0],['child',6,1]],link:[[0,1,'hand']]},
+  {m:[['elder',-7,0],['elder',7,0]],link:[[0,1,'hand']],slow:.6},
+  {m:[['man',0,0],['dog',9,-10]],link:[[0,1,'leash']]},
+  {m:[['stroller',0,0]]},
+  {m:[['woman',-7,0],['man',7,0]]},
+  {m:[['woman',-7,0],['child',6,2],['dog',-14,-12]],link:[[0,1,'hand'],[0,2,'leash']]},
+  {m:[['child',-5,0],['child',5,2]],fast:1.25},
+  {m:[['man',-7,0],['woman',7,0],['stroller',0,-24]]}];
+let riverPath=null,strollers=[],nextStroll=performance.now()+1500,gi=Math.floor(Math.random()*8);
+function riverAt(s){const P=riverPath.pts,S=riverPath.S;let lo=0,hi=S.length-1;
+  while(hi-lo>1){const m=(lo+hi)>>1;S[m]<s?lo=m:hi=m}
+  const u=S[hi]>S[lo]?(s-S[lo])/(S[hi]-S[lo]):0,x=P[lo][0]+(P[hi][0]-P[lo][0])*u,y=P[lo][1]+(P[hi][1]-P[lo][1])*u,a=Math.atan2(P[hi][1]-P[lo][1],P[hi][0]-P[lo][0]);return{x,y,a}}
+/* where the cursor rests, tree canopies in plan drop in like water – sage line drawings of varied size – and dry up when it moves */
+let lastMove=0,grove=null;
+function canopy(g,r,lobes,rot){
+  g.beginPath();for(let k=0;k<=72;k++){const a=k/72*Math.PI*2,q=r*(1+.07*Math.sin(lobes*a+rot)+.03*Math.sin(2*lobes*a));k?g.lineTo(Math.cos(a)*q,Math.sin(a)*q):g.moveTo(Math.cos(a)*q,Math.sin(a)*q)}g.closePath();g.stroke();
+  g.beginPath();g.arc(0,0,r*.58,rot,rot+Math.PI*1.35);g.stroke();
+  g.beginPath();for(let k=0;k<lobes;k++){const a=k/lobes*Math.PI*2+rot;g.moveTo(Math.cos(a)*r*.12,Math.sin(a)*r*.12);g.lineTo(Math.cos(a)*r*.42,Math.sin(a)*r*.42)}g.stroke();
+  g.beginPath();g.arc(0,0,Math.max(1,r*.06),0,7);g.fill()}
+function drawGrove(sy){
+  const t=performance.now(),on=mx>-999&&!matchMedia('(pointer: coarse)').matches,still=on&&t-lastMove>350;
+  if(still&&(!grove||grove.gone)){const ax=mx,ay=my+sy,tr=[];let tries=0;const n=7+Math.floor(Math.random()*4);
+    while(tr.length<n&&tries++<200){const r=9+Math.random()*26,a=Math.random()*6.28,d=Math.sqrt(Math.random())*(tr.length?95:10),x=ax+Math.cos(a)*d,y=ay+Math.sin(a)*d*.85;
+      if(tr.every(o=>Math.hypot(o.x-x,o.y-y)>o.r+r+4))tr.push({x,y,r,lobes:6+Math.floor(Math.random()*5),rot:Math.random()*6.28,delay:tr.length*140+Math.random()*120})}
+    grove={t0:t,tr,gone:false,out:0}}
+  if(!grove)return;
+  if(!still&&!grove.out)grove.out=t;
+  const fo=grove.out?Math.max(0,1-(t-grove.out)/320):1;if(grove.out&&fo<=0){grove.gone=true;return}
+  wx.save();wx.strokeStyle=wx.fillStyle=col.tree;wx.lineWidth=1;wx.lineCap='round';
+  for(const o of grove.tr){const u=(t-grove.t0-o.delay)/650;if(u<=0)continue;const e=Math.min(1,u);
+    const sc=reduce?1:e<1?1+2.2*Math.pow(e-1,3)+1.2*Math.pow(e-1,2):1; /* ease-out with a small overshoot, like a drop spreading */
+    const x=o.x,y=o.y-sy;if(y<-60||y>H+60)continue;
+    if(!reduce&&u<1.4){const rp=Math.min(1,u/1.4);wx.globalAlpha=fo*(1-rp)*.5;wx.beginPath();wx.arc(x,y,o.r*(.4+rp*1.1),0,7);wx.stroke()}
+    wx.globalAlpha=fo*Math.min(1,u*2)*.9;wx.save();wx.translate(x,y);wx.scale(sc,sc);canopy(wx,o.r,o.lobes,o.rot);wx.restore()}
+  wx.restore()}
+function drawWalkers(sy){
+  if(wc.width!==cv.width||wc.height!==cv.height){wc.width=cv.width;wc.height=cv.height}
+  wx.setTransform(dpr,0,0,dpr,0,0);wx.clearRect(0,0,W,H);
+  if(!riverPath||riverPath.pts.length<3)return;
+  const t=performance.now(),P=riverPath.pts,S=riverPath.S,mob=W<760;
+  /* spawn at a visible point on the bank */
+  if(t>nextStroll&&strollers.length<(mob?1:3)){nextStroll=t+5000+Math.random()*5000;
+    const vis=[];for(let k=0;k<P.length;k+=4){const y=P[k][1]-sy;if(y>H*.1&&y<H*.9)vis.push(S[k])}
+    if(vis.length){const s0=vis[Math.floor(Math.random()*vis.length)],g=GROUPS[gi++%GROUPS.length];
+      strollers.push({g,s:s0,dir:Math.random()<.5?1:-1,side:Math.random()<.5?1:-1,v:34*(g.slow||1)*(g.fast||1)*(.9+Math.random()*.2),born:t,life:9000+Math.random()*5000,walk:0,last:t,seed:Math.random()*6})}}
+  strollers=strollers.filter(w=>t-w.born<w.life&&w.s>0&&w.s<S[S.length-1]);
+  for(const w of strollers){const dt=reduce?0:Math.min(.05,(t-w.last)/1000);w.last=t;w.s+=w.dir*w.v*dt;w.walk+=w.v*dt;
+    const r=riverAt(w.s),ang=r.a+(w.dir<0?Math.PI:0),bank=(mob?16:30)*w.side*w.dir;
+    const bx=r.x-Math.sin(ang)*bank,by=r.y-sy+Math.cos(ang)*bank;if(by<-40||by>H+40)continue;
+    const age=(t-w.born)/w.life,al=age<.12?age/.12:age>.8?(1-age)/.2:1,st=Math.sin(w.walk*.42+w.seed)*(reduce?0:1);
+    const S2=mob?1.05:1.3,ca=Math.cos(ang+Math.PI/2),sa=Math.sin(ang+Math.PI/2),pos=m=>[bx+(m[1]*ca-m[2]*sa)*S2,by+(m[1]*sa+m[2]*ca)*S2];
+    wx.save();wx.globalAlpha=al*.85;wx.fillStyle=wx.strokeStyle=col.walker;
+    (w.g.link||[]).forEach(([i,j,k])=>{const A=pos(w.g.m[i]),B=pos(w.g.m[j]);wx.lineWidth=k==='leash'?.6:1.1;wx.setLineDash(k==='leash'?[1.5,1.5]:[]);
+      wx.beginPath();wx.moveTo(A[0],A[1]);wx.lineTo(B[0],B[1]);wx.stroke()});wx.setLineDash([]);
+    w.g.m.forEach((m,n)=>{const [px,py]=pos(m);wx.save();wx.translate(px,py);wx.rotate(ang+Math.PI/2);wx.scale(S2,S2);
+      if(m[0]==='dog')figDog(wx,Math.sin(w.walk*.8+n),t);else if(m[0]==='stroller'){figPerson(wx,n%2?-st:st,'woman');figStroller(wx,st)}else figPerson(wx,n%2?-st:st,m[0]);wx.restore()});
+    wx.restore()}
+}
+/* free meanders: the channel winds in tight, looping bends around its course, as on a traced river map (Kinoshita-type curve);
+   bend size varies along the river and the bends migrate slowly downstream */
+function meander(P,t,mob){if(P.length<3)return P;
+  const A=mob?12:30,L=mob?230:400,out=[];let s=0;
+  for(let i=0;i<P.length;i++){if(i)s+=Math.hypot(P[i][0]-P[i-1][0],P[i][1]-P[i-1][1]);
+    const a=P[Math.max(0,i-1)],b=P[Math.min(P.length-1,i+1)];let nx=-(b[1]-a[1]),ny=b[0]-a[0];const l=Math.hypot(nx,ny)||1;nx/=l;ny/=l;
+    const k=2*Math.PI*s/L-t*.00006,env=.75+.35*Math.sin(s/900+1.3)*Math.sin(s/1700+.4),
+      d=A*env*(Math.sin(k)+.22*Math.sin(3*k+.6)-.08*Math.cos(2*k));
+    out.push([P[i][0]+nx*d,P[i][1]+ny*d])}
+  return out}
 function frameDraw(now){
   const t=reduce?0:now-t0, sy=scrollY; if(frame++%120===0)colors();
   const mob=W<760;
@@ -516,7 +624,7 @@ function frameDraw(now){
     if(c.card&&c.card===hovered){const r=c.card.getBoundingClientRect();const edge=c.card.classList.contains('r')&&!mob?r.left-40:r.right+40;tx=c.x0+(edge-c.x0)*.45}
     const d=Math.hypot(pmx-c.x0,pmy-c.y);if(d<300&&!mob)tx+= (pmx-c.x0)*.38*(1-d/300);
     c.x+=(tx-c.x)*(reduce?1:.07)});
-  const pts=spline();
+  const pts=meander(spline(),t,mob);
   ctx.clearRect(0,0,W,H);
   if(wet){ctx.save();ctx.globalAlpha=col.paper<'#5'?.06:.55;
     for(const [sx,sy2,sc] of [[t*.006,t*.004-sy*.3,1.6],[-t*.005,-t*.007-sy*.3,2.3]]){ctx.setTransform(dpr*sc,0,0,dpr*sc,dpr*(sx%(384*sc)),dpr*(sy2%(384*sc)));ctx.fillStyle=wet;ctx.fillRect(-384,-384,W/sc+768,H/sc+768)}
@@ -534,6 +642,7 @@ function frameDraw(now){
   /* arc-length frame of the visible stretch */
   const lo=sy-260,hi=Math.min(sy+H+260,reveal);
   let s=0;const S=[];for(let i=0;i<pts.length;i++){if(i)s+=Math.hypot(pts[i][0]-pts[i-1][0],pts[i][1]-pts[i-1][1]);S.push(s)}
+  riverPath={pts,S};
   const vis=[];for(let i=1;i<pts.length-1;i++){const y=pts[i][1];if(y>lo&&y<hi){const dx=pts[i+1][0]-pts[i-1][0],dy=pts[i+1][1]-pts[i-1][1],l=Math.hypot(dx,dy)||1;vis.push({x:pts[i][0],y,s:S[i],tx:dx/l,ty:dy/l})}}
   /* ribbon: a filled band with a width that varies along it, so water reads as a mapped shape, not a stroke */
   function ribbon(P,hw,ss){if(P.length<3)return;const Lf=[],Rt=[];
@@ -563,6 +672,7 @@ function frameDraw(now){
     M.push([v.x,v.y-sy]);MW.push(base*(1+1.7*kS)*(.9+.12*Math.sin(v.s/230)+.05*Math.sin(v.s/37)+.03*Math.sin(v.s/11)))}
   const MS=vis.map(v=>v.s);ribbon(M,MW.map(w=>w*1.45+1.5),MS);ctx.fillStyle=col.river;ctx.globalAlpha=.14;ctx.fill();
   ribbon(M,MW,MS);ctx.globalAlpha=.93;ctx.fill();ctx.globalAlpha=1;
+  riverNow={pts:M,w:MW,sy};
   /* ink droplets pooling along the banks; they breathe, and swell and shy away near the cursor */
   const hash=n=>{const x=Math.sin(n*127.1)*43758.5453;return x-Math.floor(x)};
   const step=mob?110:130;
@@ -598,13 +708,15 @@ function frameDraw(now){
     ctx.beginPath();ctx.moveTo(nx-20,ny);ctx.lineTo(nx+20,ny);ctx.moveTo(nx,ny-20);ctx.lineTo(nx,ny+20);ctx.stroke();
     ctx.beginPath();ctx.moveTo(nx,ny-18);ctx.lineTo(nx+3,ny);ctx.lineTo(nx,ny-2);ctx.closePath();ctx.fill();
     ctx.font='500 10px "IBM Plex Mono",monospace';ctx.textAlign='center';ctx.textBaseline='bottom';ctx.fillText('N',nx,ny-22);ctx.globalAlpha=1}
+  drawWalkers(sy);drawGrove(sy);
   if(!reduce&&!document.hidden)requestAnimationFrame(frameDraw);
 }
 size();colors();makeWet();layout();requestAnimationFrame(frameDraw);
 new ResizeObserver(()=>{layout()}).observe(document.getElementById('page'));
 addEventListener('resize',()=>{size();layout();if(reduce)frameDraw(0)});
-addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY},{passive:true});
-document.addEventListener('pointerleave',()=>{mx=my=-9999});
+let riverNow={pts:[],w:[],sy:0};
+addEventListener('pointermove',e=>{mx=e.clientX;my=e.clientY;lastMove=performance.now()},{passive:true});
+document.addEventListener('pointerleave',()=>{mx=my=-9999});document.addEventListener('mouseout',e=>{if(!e.relatedTarget){mx=my=-9999}});
 grid.addEventListener('pointerover',e=>{hovered=e.target.closest('.card')});
 grid.addEventListener('pointerleave',()=>{hovered=null});
 grid.addEventListener('focusin',e=>{hovered=e.target.closest('.card')});
